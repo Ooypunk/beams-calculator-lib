@@ -27,6 +27,11 @@ abstract class Part {
 	 */
 	protected $label;
 
+	/**
+	 * @var int
+	 */
+	protected $number = 0;
+
 	public function __construct(int $length, int $width, int $height, string $label) {
 		$this->length = $length;
 		$this->width = $width;
@@ -63,9 +68,10 @@ abstract class Part {
 	 * @return string Label
 	 */
 	public function getLabel(): string {
-		if (empty($this->label)) {
+		$label = $this->label;
+		if (empty($label)) {
 			$cls_name_parts = explode('\\', get_called_class());
-			return sprintf(
+			$label = sprintf(
 					'%s [%dx%dx%d]',
 					end($cls_name_parts),
 					$this->getWidth(),
@@ -73,7 +79,10 @@ abstract class Part {
 					$this->getLength()
 			);
 		}
-		return $this->label;
+		if ($this->number > 0) {
+			$label .= ' (' . $this->number . ')';
+		}
+		return $label;
 	}
 
 	/*
@@ -135,7 +144,7 @@ abstract class Part {
 		if (empty($this->label)) {
 			return;
 		}
-		$this->label .= ' (' . $number . ')';
+		$this->number = $number;
 	}
 
 }
