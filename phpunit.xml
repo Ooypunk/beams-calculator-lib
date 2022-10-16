@@ -25,23 +25,12 @@
 		</testsuite>
 	</testsuites>
 
-
-<!--	<filter>
-		<whitelist>
-			<directory suffix=".php">./Lib</directory>
-			<exclude>
-				<directory suffix=".phtml">d:/wamp/app_hss/</directory>
-				<directory suffix=".php">d:/wamp/app_hss/tests/</directory>
-			</exclude>
-		</whitelist>
-	</filter>-->
-
 	<logging>
 	</logging>
 
 	<coverage>
 		<include>
-			<directory suffix=".php">./Lib</directory>
+			<directory suffix=".php">./src</directory>
 		</include>
 		<report>
 			<!--<html outputDirectory="html-coverage" lowUpperBound="50" highLowerBound="90"/>-->
