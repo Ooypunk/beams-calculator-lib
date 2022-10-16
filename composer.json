@@ -12,7 +12,8 @@
 	},
 	"require-dev": {
 		"symfony/var-dumper": "^5.4",
-		"vimeo/psalm": "^4.29"
+		"vimeo/psalm": "^4.29",
+		"php-censor/phpdoc-checker": "^3.1"
 	},
 	"autoload": {
 		"psr-4": {

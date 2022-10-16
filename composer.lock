@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7db4f54643ed96f1f2154c0a597bca9b",
+    "content-hash": "64e5a32150acc7689a33110731f9f575",
     "packages": [],
     "packages-dev": [
         {
@@ -761,6 +761,80 @@
                 "source": "https://github.com/nullivex/lib-array2xml/tree/master"
             },
             "time": "2019-03-29T20:06:56+00:00"
+        },
+        {
+            "name": "php-censor/phpdoc-checker",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-censor/phpdoc-checker.git",
+                "reference": "57b22c5376431995307271d5f30861e4840f7d0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-censor/phpdoc-checker/zipball/57b22c5376431995307271d5f30861e4840f7d0c",
+                "reference": "57b22c5376431995307271d5f30861e4840f7d0c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-json": "*",
+                "nikic/php-parser": "^4.12",
+                "php": ">=7.4.0",
+                "symfony/console": "^4.4|^5.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "phploc/phploc": "^2.0",
+                "phpmd/phpmd": "^2.10",
+                "phpunit/phpunit": "^7.5",
+                "sebastian/phpcpd": "^5.0",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "bin": [
+                "bin/phpdoc-checker"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpDocChecker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Khomutov",
+                    "email": "poisoncorpsee@gmail.com",
+                    "homepage": "http://corpsee.com",
+                    "role": "PHPDoc Checker developer"
+                },
+                {
+                    "name": "Dan Cryer",
+                    "email": "dan.cryer@block8.co.uk",
+                    "homepage": "http://www.block8.co.uk",
+                    "role": "PHP DocBlocks Checker developer"
+                }
+            ],
+            "description": "A simple tool for checking that your PHP classes and methods use PHPDocs (PHP DocBlocks Checker fork).",
+            "homepage": "https://github.com/php-censor/phpdoc-checker",
+            "keywords": [
+                "checker",
+                "code quality",
+                "comment",
+                "docblock",
+                "php",
+                "php-censor",
+                "phpdoc",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/php-censor/phpdoc-checker/issues",
+                "source": "https://github.com/php-censor/phpdoc-checker"
+            },
+            "time": "2022-04-15T15:00:32+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
