@@ -4,57 +4,77 @@ use PHPUnit\Framework\TestCase;
 
 class PartitionerTest extends TestCase {
 
+	/**
+	 * @var \Lib\Partitions\Partitioner
+	 */
+	private $partitioner;
+
+	protected function setUp(): void {
+		$limiter = new \Lib\Partitions\Limiter(2);
+		$completer = new Lib\Partitions\Completer(2);
+		$this->partitioner = new Lib\Partitions\Partitioner($limiter, $completer);
+	}
+
 	public function testCannotHaveNegativeLimit() {
 		$this->expectException(\Exception::class);
-
-		$partitioner = new Lib\Partitions\Partitioner();
-		$partitioner->getPartitioned(-2);
+		$this->partitioner->getPartitioned(-2);
 	}
 
 	public function testOnePart(): void {
-		$partitioner = new Lib\Partitions\Partitioner();
-		$partitions = $partitioner->getPartitioned(1);
+		$partitions = $this->partitioner->getPartitioned(1);
 
 		$expected = [
 			[
-				1,
+				0 => 1,
+				1 => 0,
+			],
+			[
+				0 => 0,
+				1 => 1,
 			],
 		];
 		$this->assertEquals($expected, $partitions);
 	}
 
 	public function testTwoParts(): void {
-		$partitioner = new Lib\Partitions\Partitioner();
-		$partitions = $partitioner->getPartitioned(2);
+		$partitions = $this->partitioner->getPartitioned(2);
 
 		$expected = [
-			[
-				2,
+			0 => [
+				0 => 2,
+				1 => 0,
 			],
-			[
-				1,
-				1,
+			1 => [
+				0 => 0,
+				1 => 2,
+			],
+			2 => [
+				0 => 1,
+				1 => 1,
 			],
 		];
 		$this->assertEquals($expected, $partitions);
 	}
 
 	public function testThreeParts(): void {
-		$partitioner = new Lib\Partitions\Partitioner();
-		$partitions = $partitioner->getPartitioned(3);
+		$partitions = $this->partitioner->getPartitioned(3);
 
 		$expected = [
-			[
-				3,
+			0 => [
+				0 => 3,
+				1 => 0,
 			],
-			[
-				2,
-				1,
+			1 => [
+				0 => 0,
+				1 => 3,
 			],
-			[
-				1,
-				1,
-				1,
+			2 => [
+				0 => 2,
+				1 => 1,
+			],
+			3 => [
+				0 => 1,
+				1 => 2,
 			],
 		];
 		$this->assertEquals($expected, $partitions);
@@ -64,10 +84,11 @@ class PartitionerTest extends TestCase {
 		$nr_of_parts = 3;
 		$nr_of_matrs = 3;
 
-		$partitions = (new Lib\Partitions\Partitioner())
-				->setLimiter(new Lib\Partitions\Limiter($nr_of_matrs))
-				->setCompleter(new \Lib\Partitions\Completer($nr_of_matrs))
-				->getPartitioned($nr_of_parts);
+		$limiter = new Lib\Partitions\Limiter($nr_of_matrs);
+		$completer = new Lib\Partitions\Completer($nr_of_matrs);
+
+		$partitioner = new \Lib\Partitions\Partitioner($limiter, $completer);
+		$partitions = $partitioner->getPartitioned($nr_of_parts);
 
 		$expected = [
 			0 => [
@@ -113,10 +134,11 @@ class PartitionerTest extends TestCase {
 		$nr_of_parts = 4;
 		$nr_of_matrs = 2;
 
-		$partitions = (new Lib\Partitions\Partitioner())
-				->setLimiter(new Lib\Partitions\Limiter($nr_of_matrs))
-				->setCompleter(new \Lib\Partitions\Completer($nr_of_matrs))
-				->getPartitioned($nr_of_parts);
+		$limiter = new Lib\Partitions\Limiter($nr_of_matrs);
+		$completer = new Lib\Partitions\Completer($nr_of_matrs);
+
+		$partitioner = new \Lib\Partitions\Partitioner($limiter, $completer);
+		$partitions = $partitioner->getPartitioned($nr_of_parts);
 
 		$expected = [
 			0 => [

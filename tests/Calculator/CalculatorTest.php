@@ -4,36 +4,56 @@ use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase {
 
-	public function testGettersSetters(): void {
-		$calculator = new Lib\Calculator\Calculator();
+	/**
+	 * @var \Lib\Materials\Store();
+	 */
+	private $materials_store;
 
-		$materials_store = new Lib\Materials\Store();
-		$parts_list = new \Lib\Parts\PartsList();
-		$scenarios_store = new \Lib\Scenarios\Store();
+	/**
+	 * @var \Lib\Parts\PartsList();
+	 */
+	private $parts_list;
 
-		$calculator->setMaterialsStore($materials_store);
-		$calculator->setPartsList($parts_list);
-		$calculator->setScenariosStore($scenarios_store);
+	/**
+	 * @var \Lib\Calculator\Calculator
+	 */
+	private $calculator;
 
-		$this->assertInstanceOf(\Lib\Materials\Store::class, $calculator->getMaterialsStore());
-		$this->assertInstanceOf(\Lib\Parts\PartsList::class, $calculator->getPartsList());
-		$this->assertInstanceOf(\Lib\Scenarios\Store::class, $calculator->getScenariosStore());
+	protected function setUp(): void {
+		$this->materials_store = new Lib\Materials\Store();
+		$this->parts_list = new \Lib\Parts\PartsList();
+		$this->calculator = new Lib\Calculator\Calculator($this->materials_store, $this->parts_list);
 	}
 
-//	public function testRunCalcOnePartOneMaterial(): void {
-//		$calculator = new Lib\Calculator\Calculator();
-//
-//		$parts_list = \Lib\Parts\PartsList::fromPost([]);
-//		
-//
-//		$materials_store = new Lib\Materials\Store();
-//		$scenarios_store = new \Lib\Scenarios\Store();
-//
-//		$calculator->setMaterialsStore($materials_store);
-//		$calculator->setPartsList($parts_list);
-//		$calculator->setScenariosStore($scenarios_store);
-//
-//		$this->assertNull($calculator->runCalc());
-//	}
+	public function testInitOk(): void {
+		$this->assertInstanceOf(\Lib\Materials\Store::class, $this->calculator->getMaterialsStore());
+		$this->assertInstanceOf(\Lib\Parts\PartsList::class, $this->calculator->getPartsList());
+	}
+
+	public function testCalcOneFitsInOne() {
+		$part = new Lib\Parts\Part(100, 20, 30, 'Part1');
+		$material = new Lib\Materials\Material(100, 20, 30, 'Material1');
+
+		$this->parts_list->addPart($part);
+		$this->materials_store->addMaterial($material);
+
+		$this->calculator->runCalc();
+		$scenarios = $this->calculator->getLeastWasteScenarios();
+		$this->assertCount(1, $scenarios);
+		$this->assertEquals(1, $this->calculator->getCalculationsCount());
+	}
+
+	public function testCalcOneNoFitInOne() {
+		$part = new Lib\Parts\Part(110, 20, 30, 'Part1');
+		$material = new Lib\Materials\Material(100, 20, 30, 'Material1');
+
+		$this->parts_list->addPart($part);
+		$this->materials_store->addMaterial($material);
+
+		$this->calculator->runCalc();
+		$scenarios = $this->calculator->getLeastWasteScenarios();
+		$this->assertCount(0, $scenarios);
+		$this->assertEquals(1, $this->calculator->getCalculationsCount());
+	}
 
 }

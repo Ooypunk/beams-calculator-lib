@@ -28,40 +28,50 @@ class StoreTest extends TestCase {
 		$this->assertInstanceOf(\Lib\Materials\Store::class, $instance);
 	}
 
-	public function testFromPost(): void {
-		$instance = \Lib\Materials\Store::fromPost($this->post);
-		$this->assertInstanceOf(\Lib\Materials\Store::class, $instance);
-		$this->assertCount(2, $instance);
+	public function testGetMaterials() {
+		$list = new Lib\Materials\Store();
+		$this->assertCount(0, $list->getMaterials());
 	}
 
-	public function testGetEmptyChild(): void {
-		$child = \Lib\Materials\Store::getEmptyChild();
-		$this->assertInstanceOf(\Lib\Materials\Material::class, $child);
+	public function testAddMaterial() {
+		$list = new Lib\Materials\Store();
+		$part = new Lib\Materials\Material(1, 2, 3, '4');
+		$list->addMaterial($part);
+		$this->assertCount(1, $list->getMaterials());
 	}
 
-	public function testChildFromArray(): void {
-		$array = [
-			'width' => '20',
-			'height' => '30',
-			'length' => '40',
-			'label' => 'Test_w20_h30_l40',
-		];
-		$child = \Lib\Materials\Store::childFromArray($array);
-		$this->assertInstanceOf(\Lib\Materials\Material::class, $child);
-		$this->assertEquals('Test_w20_h30_l40', $child->getLabel());
+	public function testGetByIndex() {
+		$list = new Lib\Materials\Store();
+
+		$part4 = new Lib\Materials\Material(1, 2, 3, 'Label 4');
+		$list->addMaterial($part4);
+		$part5 = new Lib\Materials\Material(2, 3, 4, 'Label 5');
+		$list->addMaterial($part5);
+		$part6 = new Lib\Materials\Material(3, 4, 5, 'Label 6');
+		$list->addMaterial($part6);
+
+		$found_part = $list->getByIndex(2);
+		$expected = 'Label 5';
+		$this->assertEquals($expected, $found_part->getLabel());
 	}
 
-	public function testFromCsvFile(): void {
-		$filename = __DIR__ . '/materials.csv';
-		$instance = \Lib\Materials\Store::fromCsvFile($filename);
-		$this->assertInstanceOf(\Lib\Materials\Store::class, $instance);
-		$this->assertCount(4, $instance);
+	public function testGetByIndexException() {
+		$list = new Lib\Materials\Store();
+
+		$this->expectException(\OutOfRangeException::class);
+		$list->getByIndex(2);
 	}
 
-	public function testGetGroupedStore(): void {
-		$instance = \Lib\Materials\Store::fromPost($this->post);
-		$this->assertInstanceOf(\Lib\Materials\Store::class, $instance);
-		$grouped_store = $instance->getGroupedStore();
+	public function testCount() {
+		$list = new Lib\Materials\Store();
+		$part = new Lib\Materials\Material(1, 2, 3, '4');
+		$list->addMaterial($part);
+		$this->assertEquals(1, $list->count());
+	}
+
+	public function testGetGroupedStore() {
+		$list = new Lib\Materials\Store();
+		$grouped_store = $list->getGroupedStore();
 		$this->assertInstanceOf(\Lib\Materials\GroupedStore::class, $grouped_store);
 	}
 
