@@ -27,16 +27,6 @@ class PartsListFactory extends \Lib\Base\BaseStoreFactory {
 		return $store;
 	}
 
-	public function fromCsvFile(string $filename, array $header_map = []): PartsList {
-		$store = new PartsList();
-
-		foreach ($this->getDataFromCsvFile($filename, $header_map) as $row) {
-			$this->addMappedRow($row, $store);
-		}
-
-		return $store;
-	}
-
 	protected function addMappedRow(array $mapped_row, PartsList $list): void {
 		$qty = 1;
 		if (array_key_exists('qty', $mapped_row)) {

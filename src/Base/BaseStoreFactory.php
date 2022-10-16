@@ -19,16 +19,4 @@ class BaseStoreFactory {
 		return $mapped;
 	}
 
-	protected function getDataFromCsvFile(string $filename, array $header_map = []): array {
-		$reader = \League\Csv\Reader::createFromPath($filename, 'r');
-		$reader->setDelimiter(';');
-		$reader->setHeaderOffset(0);
-
-		$data = [];
-		foreach ($reader->getRecords() as $row) {
-			$data[] = $this->mapHeaders($row, $header_map);
-		}
-		return $data;
-	}
-
 }
