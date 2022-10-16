@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true">
+
+	<testsuites>
+		<testsuite name="base">
+			<directory>./tests/Base</directory>
+		</testsuite>
+		<testsuite name="calculator">
+			<directory>./tests/Calculator</directory>
+		</testsuite>
+		<testsuite name="exceptions">
+			<directory>./tests/Exceptions</directory>
+		</testsuite>
+		<testsuite name="materials">
+			<directory>./tests/Materials</directory>
+		</testsuite>
+		<testsuite name="partitions">
+			<directory>./tests/Partitions</directory>
+		</testsuite>
+		<testsuite name="parts">
+			<directory>./tests/Parts</directory>
+		</testsuite>
+		<testsuite name="register">
+			<directory>./tests/Register</directory>
+		</testsuite>
+	</testsuites>
+
+
+<!--	<filter>
+		<whitelist>
+			<directory suffix=".php">./Lib</directory>
+			<exclude>
+				<directory suffix=".phtml">d:/wamp/app_hss/</directory>
+				<directory suffix=".php">d:/wamp/app_hss/tests/</directory>
+			</exclude>
+		</whitelist>
+	</filter>-->
+
+	<logging>
+	</logging>
+
+	<coverage>
+		<include>
+			<directory suffix=".php">./Lib</directory>
+		</include>
+		<report>
+			<!--<html outputDirectory="html-coverage" lowUpperBound="50" highLowerBound="90"/>-->
+			<html outputDirectory="./var/phpunit-html-coverage" />
+		</report>
+	</coverage>
+
+</phpunit>
