@@ -1,14 +1,15 @@
 <?php
 
-namespace Lib\Materials;
+namespace Ooypunk\BeamsCalculatorLib\Materials;
 
-use Lib\Materials\GroupedStore;
+use Ooypunk\BeamsCalculatorLib\Materials\Material;
+use Ooypunk\BeamsCalculatorLib\Materials\GroupedStore;
 use OutOfRangeException;
 
 class Store implements \Countable {
 
 	/**
-	 * @var \Lib\Materials\Material[]
+	 * @var \Ooypunk\BeamsCalculatorLib\Materials\Material[]
 	 */
 	private $materials = [];
 
@@ -24,7 +25,7 @@ class Store implements \Countable {
 		return new GroupedStore($this);
 	}
 
-	public function getByIndex(int $index): \Lib\Materials\Material {
+	public function getByIndex(int $index): Material {
 		foreach ($this->materials as $key => $part) {
 			if ((intval($key) + 1) === $index) {
 				return $part;

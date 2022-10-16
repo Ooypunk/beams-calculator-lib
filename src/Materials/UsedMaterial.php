@@ -1,19 +1,20 @@
 <?php
 
-namespace Lib\Materials;
+namespace Ooypunk\BeamsCalculatorLib\Materials;
 
-use Lib\Materials\Material;
-use Lib\Parts\Part;
+use Ooypunk\BeamsCalculatorLib\Materials\Material;
+use Ooypunk\BeamsCalculatorLib\Parts\Part;
+use Ooypunk\BeamsCalculatorLib\Register\Register;
 
 class UsedMaterial {
 
 	/**
-	 * @var \Lib\Materials\Material
+	 * @var \Ooypunk\BeamsCalculatorLib\Materials\Material
 	 */
 	private $material;
 
 	/**
-	 * @var \Lib\Parts\Part[]
+	 * @var \Ooypunk\BeamsCalculatorLib\Parts\Part[]
 	 */
 	private $parts = [];
 
@@ -54,7 +55,7 @@ class UsedMaterial {
 	}
 
 	public function getUsedLength(): int {
-		$saw_thickness = \Lib\Register\Register::getInstance()->saw_width;
+		$saw_thickness = Register::getInstance()->saw_width;
 		$cuts = count($this->getParts()) - 1;
 		$length = $cuts * $saw_thickness;
 		foreach ($this->getParts() as $part) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Register;
+namespace Ooypunk\BeamsCalculatorLib\Register;
 
 /**
  * Register: central point for holding settings
@@ -8,7 +8,7 @@ namespace Lib\Register;
 class Register {
 
 	/**
-	 * @var \Lib\Register\Register|null Hold the class instance.
+	 * @var \Ooypunk\BeamsCalculatorLib\Register\Register|null Hold the class instance.
 	 */
 	private static $instance = null;
 

@@ -5,14 +5,14 @@ use PHPUnit\Framework\TestCase;
 class PartitionerTest extends TestCase {
 
 	/**
-	 * @var \Lib\Partitions\Partitioner
+	 * @var \Ooypunk\BeamsCalculatorLib\Partitions\Partitioner
 	 */
 	private $partitioner;
 
 	protected function setUp(): void {
-		$limiter = new \Lib\Partitions\Limiter(2);
-		$completer = new Lib\Partitions\Completer(2);
-		$this->partitioner = new Lib\Partitions\Partitioner($limiter, $completer);
+		$limiter = new \Ooypunk\BeamsCalculatorLib\Partitions\Limiter(2);
+		$completer = new Ooypunk\BeamsCalculatorLib\Partitions\Completer(2);
+		$this->partitioner = new Ooypunk\BeamsCalculatorLib\Partitions\Partitioner($limiter, $completer);
 	}
 
 	public function testCannotHaveNegativeLimit() {
@@ -84,10 +84,10 @@ class PartitionerTest extends TestCase {
 		$nr_of_parts = 3;
 		$nr_of_matrs = 3;
 
-		$limiter = new Lib\Partitions\Limiter($nr_of_matrs);
-		$completer = new Lib\Partitions\Completer($nr_of_matrs);
+		$limiter = new Ooypunk\BeamsCalculatorLib\Partitions\Limiter($nr_of_matrs);
+		$completer = new Ooypunk\BeamsCalculatorLib\Partitions\Completer($nr_of_matrs);
 
-		$partitioner = new \Lib\Partitions\Partitioner($limiter, $completer);
+		$partitioner = new \Ooypunk\BeamsCalculatorLib\Partitions\Partitioner($limiter, $completer);
 		$partitions = $partitioner->getPartitioned($nr_of_parts);
 
 		$expected = [
@@ -134,10 +134,10 @@ class PartitionerTest extends TestCase {
 		$nr_of_parts = 4;
 		$nr_of_matrs = 2;
 
-		$limiter = new Lib\Partitions\Limiter($nr_of_matrs);
-		$completer = new Lib\Partitions\Completer($nr_of_matrs);
+		$limiter = new Ooypunk\BeamsCalculatorLib\Partitions\Limiter($nr_of_matrs);
+		$completer = new Ooypunk\BeamsCalculatorLib\Partitions\Completer($nr_of_matrs);
 
-		$partitioner = new \Lib\Partitions\Partitioner($limiter, $completer);
+		$partitioner = new \Ooypunk\BeamsCalculatorLib\Partitions\Partitioner($limiter, $completer);
 		$partitions = $partitioner->getPartitioned($nr_of_parts);
 
 		$expected = [

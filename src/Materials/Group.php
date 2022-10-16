@@ -1,10 +1,10 @@
 <?php
 
-namespace Lib\Materials;
+namespace Ooypunk\BeamsCalculatorLib\Materials;
 
-use \Lib\Materials\Store as MaterialsStore;
-use \Lib\Parts\PartsList;
-use \Lib\Scenarios\Store as ScenariosStore;
+use \Ooypunk\BeamsCalculatorLib\Materials\Store as MaterialsStore;
+use \Ooypunk\BeamsCalculatorLib\Parts\PartsList;
+use \Ooypunk\BeamsCalculatorLib\Scenarios\Store as ScenariosStore;
 
 /**
  * Group: collection of materials of the same width and height, plus collection
@@ -13,12 +13,12 @@ use \Lib\Scenarios\Store as ScenariosStore;
 class Group {
 
 	/**
-	 * @var \Lib\Materials\Store
+	 * @var \Ooypunk\BeamsCalculatorLib\Materials\Store
 	 */
 	private $materials;
 
 	/**
-	 * @var \Lib\Parts\PartsList
+	 * @var \Ooypunk\BeamsCalculatorLib\Parts\PartsList
 	 */
 	private $parts;
 
@@ -33,7 +33,7 @@ class Group {
 	private $indexed;
 
 	/**
-	 * @var \Lib\Scenarios\Store
+	 * @var \Ooypunk\BeamsCalculatorLib\Scenarios\Store
 	 */
 	private $scenarios;
 
@@ -52,21 +52,21 @@ class Group {
 
 	/**
 	 * Get Materials collection
-	 * @return \Lib\Materials\Store
+	 * @return \Ooypunk\BeamsCalculatorLib\Materials\Store
 	 */
-	public function getMaterials(): \Lib\Materials\Store {
+	public function getMaterials(): \Ooypunk\BeamsCalculatorLib\Materials\Store {
 		return $this->materials;
 	}
 
 	/**
 	 * Get Parts collection
-	 * @return \Lib\Parts\PartsList
+	 * @return \Ooypunk\BeamsCalculatorLib\Parts\PartsList
 	 */
-	public function getParts(): \Lib\Parts\PartsList {
+	public function getParts(): \Ooypunk\BeamsCalculatorLib\Parts\PartsList {
 		return $this->parts;
 	}
 
-	public function getScenarios(): \Lib\Scenarios\Store {
+	public function getScenarios(): \Ooypunk\BeamsCalculatorLib\Scenarios\Store {
 		return $this->scenarios;
 	}
 
@@ -85,19 +85,19 @@ class Group {
 
 	/**
 	 * Add a Part to the collection
-	 * @param \Lib\Parts\Part $part
+	 * @param \Ooypunk\BeamsCalculatorLib\Parts\Part $part
 	 * @return void
 	 */
-	public function addPart(\Lib\Parts\Part $part): void {
+	public function addPart(\Ooypunk\BeamsCalculatorLib\Parts\Part $part): void {
 		$this->parts->addPart($part);
 	}
 
 	/**
 	 * Add a Scenario to the collection
-	 * @param \Lib\Scenarios\Scenario $scenario
+	 * @param \Ooypunk\BeamsCalculatorLib\Scenarios\Scenario $scenario
 	 * @return void
 	 */
-	public function addScenario(\Lib\Scenarios\Scenario $scenario): void {
+	public function addScenario(\Ooypunk\BeamsCalculatorLib\Scenarios\Scenario $scenario): void {
 		$this->scenarios->addScenario($scenario);
 	}
 
@@ -157,7 +157,7 @@ class Group {
 		$this->indexed = $indexed;
 	}
 
-	public function getLeastWasteScenario(): ?\Lib\Scenarios\Scenario {
+	public function getLeastWasteScenario(): ?\Ooypunk\BeamsCalculatorLib\Scenarios\Scenario {
 		return $this->getScenarios()->getLeastWasteScenario();
 	}
 

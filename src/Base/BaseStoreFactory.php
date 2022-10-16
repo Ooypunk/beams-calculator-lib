@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Base;
+namespace Ooypunk\BeamsCalculatorLib\Base;
 
 class BaseStoreFactory {
 

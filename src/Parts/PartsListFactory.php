@@ -1,8 +1,10 @@
 <?php
 
-namespace Lib\Parts;
+namespace Ooypunk\BeamsCalculatorLib\Parts;
 
-class PartsListFactory extends \Lib\Base\BaseStoreFactory {
+use \Ooypunk\BeamsCalculatorLib\Base\BaseStoreFactory;
+
+class PartsListFactory extends BaseStoreFactory {
 
 	public function fromPost(array $post): PartsList {
 		$store = new PartsList();

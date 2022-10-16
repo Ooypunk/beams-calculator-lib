@@ -9,7 +9,7 @@ class LimiterTest extends TestCase {
 
 	public function testCannotHaveNegativeLimit() {
 		$this->expectException(\Exception::class);
-		new \Lib\Partitions\Limiter(-2);
+		new \Ooypunk\BeamsCalculatorLib\Partitions\Limiter(-2);
 	}
 
 }

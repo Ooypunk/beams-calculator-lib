@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Scenarios;
+namespace Ooypunk\BeamsCalculatorLib\Scenarios;
 
 /**
  * Store/collection for Scenarios

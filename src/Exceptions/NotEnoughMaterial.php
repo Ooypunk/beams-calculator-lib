@@ -1,6 +1,8 @@
 <?php
 
-namespace Lib\Exceptions;
+namespace Ooypunk\BeamsCalculatorLib\Exceptions;
+
+use Ooypunk\BeamsCalculatorLib\Materials\Group as MaterialsGroup;
 
 /**
  * Throw this exception when more material is asked than is available
@@ -8,7 +10,7 @@ namespace Lib\Exceptions;
 class NotEnoughMaterial extends \Exception {
 
 	/**
-	 * @var \Lib\Materials\Group|null
+	 * @var MaterialsGroup|null
 	 */
 	private $group = null;
 
@@ -21,17 +23,17 @@ class NotEnoughMaterial extends \Exception {
 
 	/**
 	 * Set group
-	 * @param \Lib\Materials\Group $group
+	 * @param \Ooypunk\BeamsCalculatorLib\Materials\Group $group
 	 */
-	public function setGroup(\Lib\Materials\Group $group): void {
+	public function setGroup(MaterialsGroup $group): void {
 		$this->group = $group;
 	}
 
 	/**
 	 * Get group
-	 * @return \Lib\Materials\Group
+	 * @return \Ooypunk\BeamsCalculatorLib\Materials\Group
 	 */
-	public function getGroup(): ?\Lib\Materials\Group {
+	public function getGroup(): ?MaterialsGroup {
 		return $this->group;
 	}
 

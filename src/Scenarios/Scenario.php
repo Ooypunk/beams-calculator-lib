@@ -1,9 +1,9 @@
 <?php
 
-namespace Lib\Scenarios;
+namespace Ooypunk\BeamsCalculatorLib\Scenarios;
 
-use Lib\Materials\UsedMaterial;
-use Lib\Exceptions\NotEnoughMaterial;
+use Ooypunk\BeamsCalculatorLib\Materials\UsedMaterial;
+use Ooypunk\BeamsCalculatorLib\Exceptions\NotEnoughMaterial;
 
 /**
  * Scenario: list of used_materials (=material that is used in a scenario), with
@@ -17,7 +17,7 @@ class Scenario {
 	private $indexed = null;
 
 	/**
-	 * @var \Lib\Materials\UsedMaterial[]
+	 * @var \Ooypunk\BeamsCalculatorLib\Materials\UsedMaterial[]
 	 */
 	private $used_materials = [];
 

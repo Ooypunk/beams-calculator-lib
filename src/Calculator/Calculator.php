@@ -1,15 +1,16 @@
 <?php
 
-namespace Lib\Calculator;
+namespace Ooypunk\BeamsCalculatorLib\Calculator;
 
-use \Lib\Partitions\Limiter;
-use \Lib\Partitions\Completer;
-use \Lib\Partitions\Partitioner;
-use \Lib\Partitions\Indexer;
-use \Lib\Scenarios\Scenario;
-use \Lib\Materials\UsedMaterial;
-use \Lib\Materials\Store as MaterialsStore;
-use Lib\Parts\PartsList;
+use Ooypunk\BeamsCalculatorLib\Partitions\Limiter;
+use Ooypunk\BeamsCalculatorLib\Partitions\Completer;
+use Ooypunk\BeamsCalculatorLib\Partitions\Partitioner;
+use Ooypunk\BeamsCalculatorLib\Partitions\Indexer;
+use Ooypunk\BeamsCalculatorLib\Scenarios\Scenario;
+use Ooypunk\BeamsCalculatorLib\Materials\UsedMaterial;
+use Ooypunk\BeamsCalculatorLib\Materials\Store as MaterialsStore;
+use Ooypunk\BeamsCalculatorLib\Materials\Group;
+use Ooypunk\BeamsCalculatorLib\Parts\PartsList;
 
 /**
  * Calculator:
@@ -21,17 +22,17 @@ use Lib\Parts\PartsList;
 class Calculator {
 
 	/**
-	 * @var \Lib\Materials\Store
+	 * @var \Ooypunk\BeamsCalculatorLib\Materials\Store
 	 */
 	private $materials_store;
 
 	/**
-	 * @var \Lib\Parts\PartsList
+	 * @var \Ooypunk\BeamsCalculatorLib\Parts\PartsList
 	 */
 	private $parts_list;
 
 	/**
-	 * @var \Lib\Materials\Group[]
+	 * @var \Ooypunk\BeamsCalculatorLib\Materials\Group[]
 	 */
 	private $groups = [];
 
@@ -44,11 +45,11 @@ class Calculator {
 	 * General getters
 	 */
 
-	public function getMaterialsStore(): \Lib\Materials\Store {
+	public function getMaterialsStore(): MaterialsStore {
 		return $this->materials_store;
 	}
 
-	public function getPartsList(): \Lib\Parts\PartsList {
+	public function getPartsList(): PartsList {
 		return $this->parts_list;
 	}
 
@@ -93,7 +94,7 @@ class Calculator {
 
 	/**
 	 * Get list of scenario's (one for each group), sort by "least waste"
-	 * @return \Lib\Scenarios\Scenario[]
+	 * @return \Ooypunk\BeamsCalculatorLib\Scenarios\Scenario[]
 	 * @throws \Exception Thrown when $groups is empty: assumption is made that
 	 * runCalc() has not been run first
 	 */
@@ -101,7 +102,7 @@ class Calculator {
 		$scenarios = [];
 		foreach ($this->groups as $group) {
 			$scenario = $group->getLeastWasteScenario();
-			if ($scenario instanceof \Lib\Scenarios\Scenario) {
+			if ($scenario instanceof Scenario) {
 				$scenarios[] = $scenario;
 			}
 		}
@@ -159,10 +160,10 @@ class Calculator {
 	/**
 	 * Helper function for fillScenariosWithGroupsIndexed(): compose list of
 	 * scenario's (based on the indexation list in group) to given group
-	 * @param \Lib\Materials\Group $group
+	 * @param \Ooypunk\BeamsCalculatorLib\Materials\Group $group
 	 * @return void
 	 */
-	private function fillScenariosWithGroupIndexed(\Lib\Materials\Group $group): void {
+	private function fillScenariosWithGroupIndexed(\Ooypunk\BeamsCalculatorLib\Materials\Group $group): void {
 		$indexed = $group->getIndexed();
 		if (!is_iterable($indexed)) {
 			return;
@@ -176,17 +177,17 @@ class Calculator {
 	/**
 	 * Helper function for fillScenariosWithGroupIndexed(): create a new
 	 * scenario for given indexation, filled with materials and parts
-	 * @param \Lib\Materials\Group $group
+	 * @param \Ooypunk\BeamsCalculatorLib\Materials\Group $group
 	 * @param array $index_arr
-	 * @return \Lib\Scenarios\Scenario
+	 * @return \Ooypunk\BeamsCalculatorLib\Scenarios\Scenario
 	 */
-	private function getScenarioWithIndexed(\Lib\Materials\Group $group, array $index_arr): \Lib\Scenarios\Scenario {
+	private function getScenarioWithIndexed(Group $group, array $index_arr): Scenario {
 		/**
-		 * @var \Lib\Materials\Store
+		 * @var \Ooypunk\BeamsCalculatorLib\Materials\Store
 		 */
 		$materials = $group->getMaterials();
 		/**
-		 * @var \Lib\Parts\PartsList
+		 * @var \Ooypunk\BeamsCalculatorLib\Parts\PartsList
 		 */
 		$parts = $group->getParts();
 

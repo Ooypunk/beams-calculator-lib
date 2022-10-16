@@ -1,9 +1,9 @@
 <?php
 
-namespace Lib\Partitions;
+namespace Ooypunk\BeamsCalculatorLib\Partitions;
 
-use Lib\Partitions\Limiter;
-use Lib\Partitions\Completer;
+use Ooypunk\BeamsCalculatorLib\Partitions\Limiter;
+use Ooypunk\BeamsCalculatorLib\Partitions\Completer;
 use Exception;
 
 /**
@@ -37,12 +37,12 @@ class Partitioner {
 	private $cur_idx = 0;
 
 	/**
-	 * @var \Lib\Partitions\Limiter
+	 * @var \Ooypunk\BeamsCalculatorLib\Partitions\Limiter
 	 */
 	private $limiter;
 
 	/**
-	 * @var \Lib\Partitions\Completer
+	 * @var \Ooypunk\BeamsCalculatorLib\Partitions\Completer
 	 */
 	private $completer;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Lib\Materials;
+namespace Ooypunk\BeamsCalculatorLib\Materials;
 
-use Lib\Base\Part as BasePart;
+use Ooypunk\BeamsCalculatorLib\Base\Part as BasePart;
 
 class Material extends BasePart {
 	

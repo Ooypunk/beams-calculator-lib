@@ -1,8 +1,8 @@
 <?php
 
-namespace Lib\Parts;
+namespace Ooypunk\BeamsCalculatorLib\Parts;
 
-use Lib\Base\Part as BasePart;
+use Ooypunk\BeamsCalculatorLib\Base\Part as BasePart;
 
 class Part extends BasePart {
 	

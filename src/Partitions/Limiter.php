@@ -1,9 +1,9 @@
 <?php
 
-namespace Lib\Partitions;
+namespace Ooypunk\BeamsCalculatorLib\Partitions;
 
 use \Exception;
-use \Lib\Partitions\Partitioner;
+use \Ooypunk\BeamsCalculatorLib\Partitions\Partitioner;
 
 /**
  * Helper class for Partitioner, doesn't work without it.

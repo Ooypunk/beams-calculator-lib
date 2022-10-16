@@ -5,12 +5,12 @@ use PHPUnit\Framework\TestCase;
 class RegisterTest extends TestCase {
 
 	public function testCanInit(): void {
-		$register = \Lib\Register\Register::getInstance();
-		$this->assertInstanceOf(\Lib\Register\Register::class, $register);
+		$register = \Ooypunk\BeamsCalculatorLib\Register\Register::getInstance();
+		$this->assertInstanceOf(\Ooypunk\BeamsCalculatorLib\Register\Register::class, $register);
 	}
 
 	public function testMagicFunctionsWork(): void {
-		$register = \Lib\Register\Register::getInstance();
+		$register = \Ooypunk\BeamsCalculatorLib\Register\Register::getInstance();
 		$this->assertFalse(isset($register->testvar));
 		$register->testvar = 'wef';
 		$this->assertEquals($register->testvar, 'wef');

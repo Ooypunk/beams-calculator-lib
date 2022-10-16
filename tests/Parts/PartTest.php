@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 class PartTest extends TestCase {
 
 	/**
-	 * @var \Lib\Parts\Part
+	 * @var \Ooypunk\BeamsCalculatorLib\Parts\Part
 	 */
 	private $part;
 
@@ -16,13 +16,13 @@ class PartTest extends TestCase {
 		$width = 20;
 		$height = 30;
 		$label = 'Testpart 1';
-		$this->part = new Lib\Parts\Part($length, $width, $height, $label);
+		$this->part = new Ooypunk\BeamsCalculatorLib\Parts\Part($length, $width, $height, $label);
 	}
 
 	public function testCannotEmptyInit(): void {
 		$this->expectException(ArgumentCountError::class);
-		$part = new \Lib\Parts\Part();
-		$this->assertInstanceOf(\Lib\Parts\Part::class, $part);
+		$part = new \Ooypunk\BeamsCalculatorLib\Parts\Part();
+		$this->assertInstanceOf(\Ooypunk\BeamsCalculatorLib\Parts\Part::class, $part);
 	}
 
 	public function testCanHaveLabel(): void {

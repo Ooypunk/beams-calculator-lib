@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Base;
+namespace Ooypunk\BeamsCalculatorLib\Base;
 
 /**
  * Abstract/Base class for Part and Material

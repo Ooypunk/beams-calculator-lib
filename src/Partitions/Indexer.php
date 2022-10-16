@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Partitions;
+namespace Ooypunk\BeamsCalculatorLib\Partitions;
 
 class Indexer {
 

@@ -47,7 +47,7 @@ class IndexerTest extends TestCase {
 			],
 		];
 
-		$indexer = new \Lib\Partitions\Indexer();
+		$indexer = new \Ooypunk\BeamsCalculatorLib\Partitions\Indexer();
 		$actual = $indexer->doIndexing($partitions, $expected);
 		$this->assertEquals($expected, $actual);
 	}
@@ -199,7 +199,7 @@ class IndexerTest extends TestCase {
 			],
 		];
 
-		$indexer = new \Lib\Partitions\Indexer();
+		$indexer = new \Ooypunk\BeamsCalculatorLib\Partitions\Indexer();
 		$actual = $indexer->doIndexing($partitions, $expected);
 		$this->assertEquals($expected, $actual);
 	}

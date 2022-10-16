@@ -1,13 +1,14 @@
 <?php
 
-namespace Lib\Parts;
+namespace Ooypunk\BeamsCalculatorLib\Parts;
 
-use OutOfRangeException;
+use \OutOfRangeException;
+use \Ooypunk\BeamsCalculatorLib\Parts\Part;
 
 class PartsList implements \Countable {
 
 	/**
-	 * @var \Lib\Parts\Part[]
+	 * @var \Ooypunk\BeamsCalculatorLib\Parts\Part[]
 	 */
 	private $parts = [];
 
@@ -16,7 +17,7 @@ class PartsList implements \Countable {
 	 */
 
 	/**
-	 * @return \Lib\Parts\Part[]
+	 * @return \Ooypunk\BeamsCalculatorLib\Parts\Part[]
 	 */
 	public function getParts(): array {
 		return $this->parts;
@@ -26,7 +27,7 @@ class PartsList implements \Countable {
 	 * "Adders"
 	 */
 
-	public function addPart(\Lib\Parts\Part $part): void {
+	public function addPart(Part $part): void {
 		$this->parts[] = $part;
 	}
 
@@ -34,7 +35,7 @@ class PartsList implements \Countable {
 	 * Other getters
 	 */
 
-	public function getByIndex(int $index): \Lib\Parts\Part {
+	public function getByIndex(int $index): Part {
 		foreach ($this->parts as $key => $part) {
 			if ((intval($key) + 1) === $index) {
 				return $part;

@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 class PartsListFactoryTest extends TestCase {
 
 	/**
-	 * @var \Lib\Parts\PartsListFactory
+	 * @var \Ooypunk\BeamsCalculatorLib\Parts\PartsListFactory
 	 */
 	private $factory;
 
@@ -36,16 +36,16 @@ class PartsListFactoryTest extends TestCase {
 	];
 
 	protected function setUp(): void {
-		$this->factory = new Lib\Parts\PartsListFactory();
+		$this->factory = new Ooypunk\BeamsCalculatorLib\Parts\PartsListFactory();
 	}
 
 	public function testInitOk() {
-		$this->assertInstanceOf(\Lib\Parts\PartsListFactory::class, $this->factory);
+		$this->assertInstanceOf(\Ooypunk\BeamsCalculatorLib\Parts\PartsListFactory::class, $this->factory);
 	}
 
 	public function testFromPost() {
 		$list = $this->factory->fromPost($this->post);
-		$this->assertInstanceOf(\Lib\Parts\PartsList::class, $list);
+		$this->assertInstanceOf(\Ooypunk\BeamsCalculatorLib\Parts\PartsList::class, $list);
 		$part = $list->getByIndex(2);
 		$this->assertEquals('Test_w20_h40_l60 (2)', $part->getLabel());
 	}

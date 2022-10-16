@@ -1,8 +1,10 @@
 <?php
 
-namespace Lib\Materials;
+namespace Ooypunk\BeamsCalculatorLib\Materials;
 
-class StoreFactory extends \Lib\Base\BaseStoreFactory {
+use Ooypunk\BeamsCalculatorLib\Base\BaseStoreFactory;
+
+class StoreFactory extends BaseStoreFactory {
 
 	public function fromPost(array $post): Store {
 		$store = new Store();

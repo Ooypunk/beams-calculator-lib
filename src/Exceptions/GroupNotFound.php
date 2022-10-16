@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Exceptions;
+namespace Ooypunk\BeamsCalculatorLib\Exceptions;
 
 class GroupNotFound extends \Exception {
 	
