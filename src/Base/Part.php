@@ -154,4 +154,29 @@ abstract class Part {
 		return $filled;
 	}
 
+	/*
+	 * To/from array
+	 */
+
+	public function toArray(): array {
+		$array = [
+			'label' => $this->label,
+			'width' => $this->width,
+			'height' => $this->height,
+			'length' => $this->length,
+			'number' => $this->number,
+		];
+		return $array;
+	}
+
+	public function fromArray(array $array): void {
+		$this->setLabel($array['label']);
+		$this->setWidth($array['width']);
+		$this->setHeight($array['height']);
+		$this->setLength($array['length']);
+		if (isset($array['number'])) {
+			$this->setNumber($array['number']);
+		}
+	}
+
 }

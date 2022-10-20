@@ -76,4 +76,32 @@ class PartTest extends TestCase {
 		$this->assertEquals('Part [20x30x123]', $this->part->getLabel());
 	}
 
+	public function testToArray() {
+		$array = $this->part->toArray();
+		$expected = [
+			'length' => 123,
+			'width' => 20,
+			'height' => 30,
+			'label' => 'Testpart 1',
+			'number' => 0,
+		];
+		$this->assertEquals($expected, $array);
+	}
+
+	public function testFromArray() {
+		$input = [
+			'label' => 'Testpart from array',
+			'width' => 1,
+			'height' => 2,
+			'length' => 3,
+			'number' => 4,
+		];
+		$this->part->fromArray($input);
+		$this->assertEquals('Testpart from array (4)', $this->part->getLabel());
+		$this->assertEquals(1, $this->part->getWidth());
+		$this->assertEquals(2, $this->part->getHeight());
+		$this->assertEquals(3, $this->part->getLength());
+		$this->assertEquals(4, $this->part->getNumber());
+	}
+
 }
