@@ -85,6 +85,13 @@ abstract class Part {
 		return $label;
 	}
 
+	/**
+	 * @return int
+	 */
+	public function getNumber(): int {
+		return $this->number;
+	}
+
 	/*
 	 * General setters
 	 */
@@ -125,6 +132,13 @@ abstract class Part {
 		return $this;
 	}
 
+	public function setNumber(int $number): void {
+		if (empty($this->label)) {
+			return;
+		}
+		$this->number = $number;
+	}
+
 	/*
 	 * Other
 	 */
@@ -138,13 +152,6 @@ abstract class Part {
 				$this->getLength()
 		);
 		return $filled;
-	}
-
-	public function setNumber(int $number): void {
-		if (empty($this->label)) {
-			return;
-		}
-		$this->number = $number;
 	}
 
 }
