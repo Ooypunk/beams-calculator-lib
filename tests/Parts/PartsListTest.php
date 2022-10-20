@@ -50,4 +50,47 @@ class PartsListTest extends TestCase {
 		$this->assertEquals(1, $list->count());
 	}
 
+	public function testToArray() {
+		$list = new Ooypunk\BeamsCalculatorLib\Parts\PartsList();
+		$list->setLabel('Testlist 1');
+		$part = new Ooypunk\BeamsCalculatorLib\Parts\Part(1, 2, 3, '4');
+		$list->addPart($part);
+
+		$array = $list->toArray();
+		$expected = [
+			'label' => 'Testlist 1',
+			'parts' => [
+				[
+					'length' => 1,
+					'width' => 2,
+					'height' => 3,
+					'label' => '4',
+					'number' => 0,
+				],
+			],
+		];
+		$this->assertEquals($expected, $array);
+	}
+
+	public function testFromArray() {
+		$list = new Ooypunk\BeamsCalculatorLib\Parts\PartsList();
+		$input = [
+			'label' => 'Testlist 1',
+			'parts' => [
+				[
+					'length' => 1,
+					'width' => 2,
+					'height' => 3,
+					'label' => 'Testpart 004',
+					'number' => 0,
+				],
+			],
+		];
+		$list->fromArray($input);
+		$this->assertEquals('Testlist 1', $list->getLabel());
+		$this->assertCount(1, $list->getParts());
+		$part = $list->getByIndex(1);
+		$this->assertEquals('Testpart 004', $part->getLabel());
+	}
+
 }
