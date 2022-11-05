@@ -13,13 +13,46 @@ class Store implements \Countable {
 	 */
 	private $materials = [];
 
+	/**
+	 * @var string|null
+	 */
+	private $label;
+
+	/*
+	 * General getters
+	 */
+
 	public function getMaterials(): array {
 		return $this->materials;
 	}
 
+	public function getLabel(): ?string {
+		return $this->label;
+	}
+
+	/*
+	 * General setters
+	 */
+
+	/**
+	 * @param string|null $label List label
+	 * @return void
+	 */
+	public function setLabel(?string $label): void {
+		$this->label = $label;
+	}
+
+	/*
+	 * "Adders"
+	 */
+
 	public function addMaterial(Material $material): void {
 		$this->materials[] = $material;
 	}
+
+	/*
+	 * Other
+	 */
 
 	public function getGroupedStore(): GroupedStore {
 		return new GroupedStore($this);
@@ -35,6 +68,9 @@ class Store implements \Countable {
 		throw new OutOfRangeException(sprintf($msg, $index));
 	}
 
+	/**
+	 * @return int Number of materials in this store
+	 */
 	public function count(): int {
 		return count($this->materials);
 	}
