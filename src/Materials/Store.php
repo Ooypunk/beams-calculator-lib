@@ -75,4 +75,49 @@ class Store implements \Countable {
 		return count($this->materials);
 	}
 
+	/*
+	 * To/from array
+	 */
+
+	/**
+	 * Create array from this materials store
+	 * @return array
+	 */
+	public function toArray(): array {
+		$array = [
+			'label' => $this->label,
+			'materials' => [],
+		];
+		foreach ($this->getMaterials() as $material) {
+			$array['materials'][] = $material->toArray();
+		}
+		return $array;
+	}
+
+	/**
+	 * Fill this materials list with given array
+	 * @param array $array
+	 * @return void
+	 */
+	public function fromArray(array $array): void {
+		$label = isset($array['label']) ? $array['label'] : null;
+		$this->setLabel($label);
+
+		$materials = [];
+		if (isset($array['materials']) && is_array($array['materials'])) {
+			foreach ($array['materials'] as $material_arr) {
+				$length = $material_arr['length'];
+				$width = $material_arr['width'];
+				$height = $material_arr['height'];
+				$label = $material_arr['label'];
+				$material = new Material($length, $width, $height, $label);
+				if (isset($material_arr['number'])) {
+					$material->setNumber($material_arr['number']);
+				}
+				$materials[] = $material;
+			}
+		}
+		$this->setMaterials($materials);
+	}
+
 }
