@@ -35,6 +35,14 @@ class Store implements \Countable {
 	 */
 
 	/**
+	 * @param \Ooypunk\BeamsCalculatorLib\Materials\Material[] $materials
+	 * @return void
+	 */
+	public function setMaterials(array $materials): void {
+		$this->materials = $materials;
+	}
+
+	/**
 	 * @param string|null $label List label
 	 * @return void
 	 */
