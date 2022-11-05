@@ -53,4 +53,20 @@ class StoreFactory extends BaseStoreFactory {
 		}
 	}
 
+	/**
+	 * Get new, filled Materials Store from CSV file
+	 * @param string $file_path
+	 * @param array $header_map
+	 * @return Store
+	 */
+	public function fromCsvFile(string $file_path, array $header_map = []): Store {
+		$store = new Store();
+
+		foreach ($this->getDataFromCsvFile($file_path, $header_map) as $row) {
+			$this->addMappedRow($row, $store);
+		}
+
+		return $store;
+	}
+
 }

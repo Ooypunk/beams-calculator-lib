@@ -53,4 +53,20 @@ class PartsListFactory extends BaseStoreFactory {
 		}
 	}
 
+	/**
+	 * Get new, filled Parts List from CSV file
+	 * @param string $file_path
+	 * @param array $header_map
+	 * @return PartsList
+	 */
+	public function fromCsvFile(string $file_path, array $header_map = []): PartsList {
+		$store = new PartsList();
+
+		foreach ($this->getDataFromCsvFile($file_path, $header_map) as $row) {
+			$this->addMappedRow($row, $store);
+		}
+
+		return $store;
+	}
+
 }
