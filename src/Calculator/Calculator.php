@@ -11,6 +11,7 @@ use Ooypunk\BeamsCalculatorLib\Materials\UsedMaterial;
 use Ooypunk\BeamsCalculatorLib\Materials\Store as MaterialsStore;
 use Ooypunk\BeamsCalculatorLib\Materials\Group;
 use Ooypunk\BeamsCalculatorLib\Parts\PartsList;
+use Ooypunk\BeamsCalculatorLib\Time\MicrotimeMark;
 
 /**
  * Calculator:
@@ -69,25 +70,33 @@ class Calculator {
 	 * @return void
 	 */
 	public function runCalc(): void {
+		MicrotimeMark::init();
+
 		// Get materials store, grouped on width and height
 		$grouped_store = $this->materials_store->getGroupedStore();
+		MicrotimeMark::mark('Materials store got');
 
 		// Add parts to their corresponding group (match on width and height)
 		$grouped_store->loadPartsListIntoGroups($this->parts_list);
+		MicrotimeMark::mark('Parts loaded into group');
 
 		// Now get these groups (materials/parts combinations)
 		$groups = $grouped_store->getGroupsWithParts();
+		MicrotimeMark::mark('Get groups from store');
 
 		// Add partitions list to each
 		$this->addPartitionsToGroups($groups);
+		MicrotimeMark::mark('Partitions added to groups');
 
 		// Add indexation list to each
 		$this->addIndexationToGroups($groups);
+		MicrotimeMark::mark('Indexation added to groups');
 
 		// Fill scenarios with "indexed": for each group, add scenario's for all
 		// "indexed" entries, filled with materials and parts (according to
 		// their respective "indexed" entry)
 		$this->fillScenariosWithGroupsIndexed($groups);
+		MicrotimeMark::mark('fillScenariosWithGroupsIndexed');
 
 		$this->groups = $groups;
 	}
