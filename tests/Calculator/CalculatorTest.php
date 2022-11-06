@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use Ooypunk\BeamsCalculatorLib\Calculator\Calculator;
 
 class CalculatorTest extends TestCase {
 
@@ -22,7 +23,7 @@ class CalculatorTest extends TestCase {
 	protected function setUp(): void {
 		$this->materials_store = new Ooypunk\BeamsCalculatorLib\Materials\Store();
 		$this->parts_list = new \Ooypunk\BeamsCalculatorLib\Parts\PartsList();
-		$this->calculator = new Ooypunk\BeamsCalculatorLib\Calculator\Calculator($this->materials_store, $this->parts_list);
+		$this->calculator = new Calculator($this->materials_store, $this->parts_list);
 	}
 
 	public function testInitOk(): void {
@@ -54,6 +55,30 @@ class CalculatorTest extends TestCase {
 		$scenarios = $this->calculator->getLeastWasteScenarios();
 		$this->assertCount(0, $scenarios);
 		$this->assertEquals(1, $this->calculator->getCalculationsCount());
+	}
+
+	public function testFromMiddleSizedCsvs() {
+		$header_map = [
+			'Lengte' => 'length',
+			'Breedte' => 'width',
+			'Dikte' => 'height',
+			'Label' => 'label',
+			'Aantal' => 'qty',
+		];
+
+		$parts_factory = new Ooypunk\BeamsCalculatorLib\Parts\PartsListFactory();
+		$parts_file = __DIR__ . '/parts.csv';
+		$parts_list = $parts_factory->fromCsvFile($parts_file, $header_map);
+
+		$materials_factory = new Ooypunk\BeamsCalculatorLib\Materials\StoreFactory();
+		$materials_file = __DIR__ . '/materials.csv';
+		$materials_store = $materials_factory->fromCsvFile($materials_file, $header_map);
+
+		$calculator = new Calculator($materials_store, $parts_list);
+		$calculator->runCalc();
+		$scenarios = $calculator->getLeastWasteScenarios();
+		$this->assertCount(3, $scenarios);
+		$this->assertEquals(5321, $calculator->getCalculationsCount());
 	}
 
 }
